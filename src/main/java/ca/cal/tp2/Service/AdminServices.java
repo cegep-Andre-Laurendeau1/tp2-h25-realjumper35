@@ -1,5 +1,6 @@
 package ca.cal.tp2.Service;
 
+import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
 import ca.cal.tp2.Repository.IAdminRepository;
 
@@ -12,10 +13,10 @@ public class AdminServices {
 
 
 
-    public  Utilisateur AjouterEmprunteur(String name, String email, String phoneNumber) {
-        Utilisateur utilisateur = new Utilisateur(name, email, phoneNumber);
+    public Emprunteur AjouterEmprunteur(String name, String email, String phoneNumber) {
+        Emprunteur emprunteur = new Emprunteur(name, email, phoneNumber);
 
-        return adminRepository.CreerEmprunteur(utilisateur);
+        return adminRepository.CreerEmprunteur(emprunteur);
     }
 
     public  Utilisateur TrouverEmprunteur(int userID) {

@@ -1,5 +1,6 @@
 package ca.cal.tp2.Repository;
 
+import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
 
 import java.sql.*;
@@ -11,6 +12,11 @@ public class AdminRepositoryJDBC implements IAdminRepository {
 
     static Connection conn = null;
     static Statement statement = null;
+
+    @Override
+    public Emprunteur CreerEmprunteur(Emprunteur emprunteur) {
+        return null;
+    }
 
     @Override
     public Utilisateur CreerEmprunteur(Utilisateur user) {

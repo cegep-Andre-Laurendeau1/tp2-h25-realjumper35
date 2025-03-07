@@ -1,19 +1,17 @@
 package ca.cal.tp2.Repository;
 
+import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
-
-import java.util.List;
 
 public class AdminRepositoryJPA implements IAdminRepository {
     @Override
-    public Utilisateur CreerEmprunteur(Utilisateur user) {
-        String nom = user.getName();
-        String email = user.getEmail();
-        String phone = user.getPhoneNumber();
+    public Emprunteur CreerEmprunteur(Emprunteur emprunteur) {
+        String nom = emprunteur.getName();
+        String email = emprunteur.getEmail();
+        String phone = emprunteur.getPhoneNumber();
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
         EntityManager em = emf.createEntityManager();
@@ -27,14 +25,19 @@ public class AdminRepositoryJPA implements IAdminRepository {
 //            em.persist(new Utilisateur(nom, email, phone));
 //        }
 
-        em.persist(new Utilisateur(nom, email, phone));
+        em.persist(new Emprunteur(nom, email, phone));
 
         em.getTransaction().commit();
 
         em.close();
         emf.close();
 
-        return user;
+        return emprunteur;
+    }
+
+    @Override
+    public Utilisateur CreerEmprunteur(Utilisateur user) {
+        return null;
     }
 
     @Override
