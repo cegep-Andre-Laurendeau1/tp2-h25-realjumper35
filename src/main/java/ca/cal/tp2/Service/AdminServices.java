@@ -1,22 +1,24 @@
 package ca.cal.tp2.Service;
 
 import ca.cal.tp2.Model.Utilisateur;
-import ca.cal.tp2.Repository.AdminRepositoryJDBC;
+import ca.cal.tp2.Repository.IAdminRepository;
 
 public class AdminServices {
-    private final AdminRepositoryJDBC AdminRepositoryJDBC;
+    private final IAdminRepository adminRepository;
 
-    public AdminServices(AdminRepositoryJDBC adminRepositoryJDBC) {
-        this.AdminRepositoryJDBC = adminRepositoryJDBC;
+    public AdminServices(IAdminRepository adminRepository) {
+        this.adminRepository = adminRepository;
     }
 
-    public  Utilisateur AjouterEmprunteur(String name, String email, String phoneNumber) {
-        Utilisateur utilisateur = new Utilisateur(0, name, email, phoneNumber);
 
-        return AdminRepositoryJDBC.CreerEmprunteur(utilisateur);
+
+    public  Utilisateur AjouterEmprunteur(String name, String email, String phoneNumber) {
+        Utilisateur utilisateur = new Utilisateur(name, email, phoneNumber);
+
+        return adminRepository.CreerEmprunteur(utilisateur);
     }
 
     public  Utilisateur TrouverEmprunteur(int userID) {
-        return AdminRepositoryJDBC.getEmprunteur(userID);
+        return adminRepository.getEmprunteur(userID);
     }
 }

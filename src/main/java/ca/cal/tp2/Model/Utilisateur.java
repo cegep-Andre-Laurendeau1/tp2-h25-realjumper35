@@ -1,9 +1,21 @@
 package ca.cal.tp2.Model;
 
+import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
 public class Utilisateur {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userID")
     private int userID;
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+    @Column(name = "phoneNumber")
     private String phoneNumber;
 
     public Utilisateur(int userID, String name, String email, String phoneNumber) {
@@ -11,6 +23,13 @@ public class Utilisateur {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Utilisateur(String name, String email, String phoneNumber) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+
     }
 
     public int getUserID() {

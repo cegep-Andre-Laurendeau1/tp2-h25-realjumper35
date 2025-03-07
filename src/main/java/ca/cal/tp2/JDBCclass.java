@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class JDBCclass {
 
-    static final String DB_URL = "jdbc:h2:mem:TP1;DB_CLOSE_DELAY=-1";
+    static final String DB_URL = "jdbc:h2:mem:TP2;DB_CLOSE_DELAY=-1";
     static final String USER = "sa";
     static final String PASS = "";
 
