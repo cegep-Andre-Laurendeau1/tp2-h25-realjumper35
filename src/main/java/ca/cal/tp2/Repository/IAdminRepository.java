@@ -9,4 +9,6 @@ public interface IAdminRepository {
     public abstract Utilisateur CreerEmprunteur(Utilisateur user);
 
     public abstract Utilisateur getEmprunteur(int userID);
+
+    void ajouterCD(String titre, int NE, String artiste, int duree, String genre);
 }

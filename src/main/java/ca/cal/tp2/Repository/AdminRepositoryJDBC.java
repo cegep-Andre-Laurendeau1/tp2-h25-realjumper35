@@ -78,4 +78,10 @@ public class AdminRepositoryJDBC implements IAdminRepository {
         }
     }
 
+    @Override
+    public void ajouterCD(String titre, int NE, String artiste, int duree, String genre) {
+
+    }
+
+
 }

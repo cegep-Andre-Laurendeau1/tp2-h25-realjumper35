@@ -51,6 +51,7 @@ public class Main {
         adminServices.AjouterEmprunteur("Yohan", "Le Gal", "23212365522");
         adminServices.AjouterEmprunteur("Briac", "puagman", "45656456456");
 
+        adminServices.AjouterCD("CD1", 1, "Artiste1", 60, "Genre1");
 
 
     }

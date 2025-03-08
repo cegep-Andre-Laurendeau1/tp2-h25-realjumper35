@@ -1,5 +1,6 @@
 package ca.cal.tp2.Repository;
 
+import ca.cal.tp2.Model.CD;
 import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
 import jakarta.persistence.EntityManager;
@@ -51,5 +52,23 @@ public class AdminRepositoryJPA implements IAdminRepository {
         emf.close();
 
         return utilisateur;
+    }
+
+
+
+
+
+    @Override
+    public void ajouterCD(String titre, int NE, String artiste, int duree, String genre) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
+        EntityManager em = emf.createEntityManager();
+
+
+        em.getTransaction().begin();
+        em.persist(new CD(titre, NE, artiste, duree, genre));
+        em.getTransaction().commit();
+
+        em.close();
+        emf.close();
     }
 }

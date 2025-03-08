@@ -6,8 +6,8 @@ public class Livre extends Document {
     private String editeur;
     private int nombrePages;
 
-    public Livre(int documentID, String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
-        super(documentID, titre, nombreExemplaires);
+    public Livre( String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
+        super( titre, nombreExemplaires);
         this.ISBN = ISBN;
         this.auteur = auteur;
         this.editeur = editeur;

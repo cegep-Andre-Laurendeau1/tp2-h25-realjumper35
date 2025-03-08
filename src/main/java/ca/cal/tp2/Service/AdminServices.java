@@ -1,5 +1,6 @@
 package ca.cal.tp2.Service;
 
+import ca.cal.tp2.Model.CD;
 import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
 import ca.cal.tp2.Repository.IAdminRepository;
@@ -12,14 +13,18 @@ public class AdminServices {
     }
 
 
-
     public Emprunteur AjouterEmprunteur(String name, String email, String phoneNumber) {
         Emprunteur emprunteur = new Emprunteur(name, email, phoneNumber);
 
         return adminRepository.CreerEmprunteur(emprunteur);
     }
 
-    public  Utilisateur TrouverEmprunteur(int userID) {
+    public Utilisateur TrouverEmprunteur(int userID) {
         return adminRepository.getEmprunteur(userID);
+    }
+
+    public void AjouterCD(String titre, int NE, String artiste, int duree, String genre) {
+        CD cd = new CD(titre, NE, artiste, duree, genre);
+        adminRepository.ajouterCD(titre, NE, artiste, duree, genre);
     }
 }
