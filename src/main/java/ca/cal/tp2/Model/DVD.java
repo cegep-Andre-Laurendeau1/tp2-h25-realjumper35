@@ -1,5 +1,8 @@
 package ca.cal.tp2.Model;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class DVD extends Document {
     private String realisateur;
     private int duree;
@@ -10,5 +13,9 @@ public class DVD extends Document {
         this.realisateur = realisateur;
         this.duree = duree;
         this.note = note;
+    }
+
+    public DVD() {
+
     }
 }

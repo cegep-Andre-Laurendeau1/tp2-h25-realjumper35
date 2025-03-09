@@ -83,5 +83,15 @@ public class AdminRepositoryJDBC implements IAdminRepository {
 
     }
 
+    @Override
+    public void ajouterDVD(String titre, int NE, String realisateur, int duree, String genre) {
+
+    }
+
+    @Override
+    public void ajouterLivre(String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
+
+    }
+
 
 }

@@ -2,15 +2,19 @@ package ca.cal.tp2.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "document_type", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Document {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int documentID;
     private String titre;
     private int nombreExemplaires;
+
+//    @OneToMany(mappedBy = "document")
+//    private List<EmpruntDetail> references;
 
     public Document( String titre, int nombreExemplaires) {
 

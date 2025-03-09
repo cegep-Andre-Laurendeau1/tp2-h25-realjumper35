@@ -45,14 +45,14 @@ public class Main {
 //        Thread.currentThread().join();
 
 
-
         System.out.println("JPA/Hibernate");
         System.out.println("Ajouter un utilisateur, retour de l'id :");
         adminServices.AjouterEmprunteur("Yohan", "Le Gal", "23212365522");
         adminServices.AjouterEmprunteur("Briac", "puagman", "45656456456");
 
-        adminServices.AjouterCD("CD1", 1, "Artiste1", 60, "Genre1");
-
+        adminServices.AjouterCD("CD1", 6, "Artiste1", 60, "Genre1");
+        adminServices.AjouterDVD("DVD1", 7, "Realisateur1", 120, "Genre1");
+        adminServices.AjouterLivre("Livre1", 8, "ISBN1", "Auteur1", "Editeur1", 100);
 
     }
 }

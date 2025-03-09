@@ -11,4 +11,8 @@ public interface IAdminRepository {
     public abstract Utilisateur getEmprunteur(int userID);
 
     void ajouterCD(String titre, int NE, String artiste, int duree, String genre);
+
+    void ajouterDVD(String titre, int NE, String realisateur, int duree, String genre);
+
+    void ajouterLivre(String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages);
 }
