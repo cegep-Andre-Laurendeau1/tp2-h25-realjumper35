@@ -51,8 +51,12 @@ public class Main {
         adminServices.AjouterEmprunteur("Briac", "puagman", "45656456456");
 
         adminServices.AjouterCD("CD1", 6, "Artiste1", 60, "Genre1");
+        adminServices.AjouterCD("CD2", 7, "Artiste2", 70, "Genre2");
         adminServices.AjouterDVD("DVD1", 7, "Realisateur1", 120, "Genre1");
+        adminServices.AjouterDVD("DVD2", 8, "Realisateur2", 130, "Genre2");
         adminServices.AjouterLivre("Livre1", 8, "ISBN1", "Auteur1", "Editeur1", 100);
+        adminServices.AjouterLivre("Livre2", 9, "ISBN2", "Auteur2", "Editeur2", 110);
+
 
     }
 }
