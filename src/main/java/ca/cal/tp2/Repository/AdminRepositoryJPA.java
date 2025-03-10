@@ -7,7 +7,7 @@ import jakarta.persistence.Persistence;
 
 public class AdminRepositoryJPA implements IAdminRepository {
     @Override
-    public Emprunteur CreerEmprunteur(Emprunteur emprunteur) {
+    public void CreerEmprunteur(Emprunteur emprunteur) {
         String nom = emprunteur.getName();
         String email = emprunteur.getEmail();
         String phone = emprunteur.getPhoneNumber();
@@ -31,17 +31,13 @@ public class AdminRepositoryJPA implements IAdminRepository {
         em.close();
         emf.close();
 
-        return emprunteur;
+//        return emprunteur;
     }
 
-    @Override
-    public Utilisateur CreerEmprunteur(Utilisateur user) {
-        return null;
-    }
 
     @Override
     public Utilisateur getEmprunteur(int userID) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP1");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
         EntityManager em = emf.createEntityManager();
 
         Utilisateur utilisateur = em.find(Utilisateur.class, userID);
@@ -88,4 +84,6 @@ public class AdminRepositoryJPA implements IAdminRepository {
         em.close();
         emf.close();
     }
+
+
 }

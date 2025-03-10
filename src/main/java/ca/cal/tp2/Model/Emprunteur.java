@@ -2,23 +2,29 @@ package ca.cal.tp2.Model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type",discriminatorType = DiscriminatorType.STRING)
 public class Emprunteur extends Utilisateur {
-    public Emprunteur(String name, String email, String phoneNumber) {
-        super(name, email, phoneNumber);
+
+    public Emprunteur(String nom, String email, String phoneNumber) {
+        super(nom, email, phoneNumber);
     }
+
+
+
+
+    @OneToMany(mappedBy = "emprunteur")
+    private List<Document> retourneDocuments;
+
+    @OneToMany(mappedBy = "emprunteur")
+    private List<Amende> payeAmendes;
+
+    @OneToMany(mappedBy = "emprunteur")
+    private List<Emprunt> rapportHistoriqueEmprunt;
+
 
     public Emprunteur() {
-        super();
 
     }
-
-    public void emprunte(Document doc) {}
-    public void retourneDocument(Document doc) {}
-    public void payeAmende(double montant) {}
-    public void rapportHistoriqueEmprunt() {}
-
-
 }

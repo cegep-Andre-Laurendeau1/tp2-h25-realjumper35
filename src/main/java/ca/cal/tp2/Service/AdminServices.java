@@ -13,10 +13,10 @@ public class AdminServices {
     }
 
 
-    public Emprunteur AjouterEmprunteur(String name, String email, String phoneNumber) {
+    public void AjouterEmprunteur(String name, String email, String phoneNumber) {
         Emprunteur emprunteur = new Emprunteur(name, email, phoneNumber);
 
-        return adminRepository.CreerEmprunteur(emprunteur);
+        adminRepository.CreerEmprunteur(emprunteur);
     }
 
     public Utilisateur TrouverEmprunteur(int userID) {

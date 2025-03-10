@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
-public class Utilisateur {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "userID")
@@ -29,6 +29,10 @@ public class Utilisateur {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+
+    }
+
+    public Utilisateur() {
 
     }
 

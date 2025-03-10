@@ -13,13 +13,9 @@ public class AdminRepositoryJDBC implements IAdminRepository {
     static Connection conn = null;
     static Statement statement = null;
 
-    @Override
-    public Emprunteur CreerEmprunteur(Emprunteur emprunteur) {
-        return null;
-    }
 
     @Override
-    public Utilisateur CreerEmprunteur(Utilisateur user) {
+    public void CreerEmprunteur(Emprunteur user) {
         String sqlInsertUser = "INSERT INTO Utilisateur (name, email, phone_number) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -44,10 +40,10 @@ public class AdminRepositoryJDBC implements IAdminRepository {
             }
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'insertion de l'utilisateur : " + e.getMessage());
-            return null;
+//            return null;
         }
 
-        return user;
+//        return user;
     }
 
 
@@ -61,8 +57,7 @@ public class AdminRepositoryJDBC implements IAdminRepository {
             ResultSet rs = prepStmt.executeQuery();
 
             if (rs.next()) {
-                Utilisateur user = new Utilisateur(
-                        rs.getInt("user_id"),
+                Utilisateur user = new Emprunteur(
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("phone_number")

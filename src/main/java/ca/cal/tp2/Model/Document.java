@@ -12,9 +12,11 @@ public abstract class Document {
     private int documentID;
     private String titre;
     private int nombreExemplaires;
-
-//    @OneToMany(mappedBy = "document")
-//    private List<EmpruntDetail> references;
+    @ManyToOne
+    @JoinColumn(name = "emprunteur_id")
+    private Emprunteur emprunteur;
+    @OneToMany(mappedBy = "document")
+    private List<EmpruntDetail> references;
 
     public Document( String titre, int nombreExemplaires) {
 

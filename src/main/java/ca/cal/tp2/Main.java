@@ -1,14 +1,19 @@
 package ca.cal.tp2;
 
+import ca.cal.tp2.Model.Emprunt;
 import ca.cal.tp2.Repository.AdminRepositoryJPA;
+import ca.cal.tp2.Repository.EmprunteurRepository;
 import ca.cal.tp2.Service.AdminServices;
+import ca.cal.tp2.Service.EmprunteurServices;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, SQLException {
 
         final AdminServices adminServices = new AdminServices(new AdminRepositoryJPA());
+        final EmprunteurServices emprunteurServices = new EmprunteurServices(new EmprunteurRepository());
 
 
         TcpServer.startTcpServer();
@@ -46,7 +51,7 @@ public class Main {
 
 
         System.out.println("JPA/Hibernate");
-        System.out.println("Ajouter un utilisateur, retour de l'id :");
+        System.out.println("Ajouter un empruteur :");
         adminServices.AjouterEmprunteur("Yohan", "Le Gal", "23212365522");
         adminServices.AjouterEmprunteur("Briac", "puagman", "45656456456");
 
@@ -56,6 +61,10 @@ public class Main {
         adminServices.AjouterDVD("DVD2", 8, "Realisateur2", 130, "Genre2");
         adminServices.AjouterLivre("Livre1", 8, "ISBN1", "Auteur1", "Editeur1", 100);
         adminServices.AjouterLivre("Livre2", 9, "ISBN2", "Auteur2", "Editeur2", 110);
+
+        emprunteurServices.AjouterEmprunt(1, 1, "2020-01-01", "ok");
+        emprunteurServices.AjouterEmprunt(1, 2, "2020-01-02", "ok");
+        emprunteurServices.AjouterEmprunt(2, 6, "2020-01-03", "ok");
 
 
     }

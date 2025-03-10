@@ -5,7 +5,8 @@
              version="2.2">
 
     <persistence-unit name="hibernate2.TP2">
-        <class>ca.cal.tp2.Model.Utilisateur</class>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
         <properties>
             <!-- Configuration de la connexion à la base de données H2 -->
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
