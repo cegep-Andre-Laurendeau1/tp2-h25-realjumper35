@@ -76,14 +76,20 @@ public class Main {
 
         emprunteurServices.NouvelEmprunt(2, 6, "2020-01-04", "ok");
 //        nb exemplaire = 0
-//
-        emprunteurServices.NouvelEmprunt(1, 6, "2020-01-03", "ok");
-//
 
+        emprunteurServices.NouvelEmprunt(1, 6, "2020-01-03", "ok");
+
+//Trouver Livre TEST
         emprunteurServices.TrouverLivre("1984", "George Orwell");
+
         emprunteurServices.TrouverLivre("dmaldmalk", "asdmklamdlkas");
 
         emprunteurServices.TrouverLivre("game", "martins");
+
+//TrouverCD
+        emprunteurServices.TrouverCD("Racine Carré", "Stromae");
+//TrouverDVD
+        emprunteurServices.TrouverDVD("SpiderMan", "Sam Raimi");
 
 
         System.out.println("FIN");

@@ -87,4 +87,46 @@ public class EmprunteurRepository {
 //
         }
     }
+
+    public List<CD> rechercherCD(String titre, String artiste) throws DataBaseErrorException {
+        try (EntityManager em = entityManagerFactory.createEntityManager()) {
+
+            em.getTransaction().begin();
+            List<CD> CDs = em.createQuery(
+                            "SELECT d FROM CD d " +
+                                    "WHERE lower(d.titre) LIKE lower(:titre) " +
+                                    "AND d.artiste = :artiste ", CD.class)
+                    .setParameter("titre", "%" + titre.toLowerCase() + "%")
+                    .setParameter("artiste", artiste)
+                    .getResultList();
+
+            if (CDs.isEmpty()) {
+                throw new DataBaseErrorException("Aucun CD trouvé avec le titre: " + titre + " et l'artiste: " + artiste);
+            } else {
+                return CDs;
+            }
+        }
+    }
+
+    public List<DVD> rechercherDVD(String titre, String realisateur) throws DataBaseErrorException {
+        try (EntityManager em = entityManagerFactory.createEntityManager()) {
+
+            em.getTransaction().begin();
+            List<DVD> DVDs = em.createQuery(
+                            "SELECT d FROM DVD d " +
+                                    "WHERE lower(d.titre) LIKE lower(:titre) " +
+                                    "AND lower(d.realisateur) LIKE lower(:realisateur) ", DVD.class)
+                    .setParameter("titre", "%" + titre.toLowerCase() + "%")
+                    .setParameter("realisateur", "%" + realisateur.toLowerCase() + "%")
+                    .getResultList();
+
+            if (DVDs.isEmpty()) {
+                throw new DataBaseErrorException("Aucun DVD trouvé avec le titre: " + titre + " et le realisateur: " + realisateur);
+            } else {
+                return DVDs;
+            }
+        }
+    }
+
+
 }
