@@ -13,33 +13,6 @@ public class PreposeRepositoryJPA implements IPreposeRepository {
 
     @Override
     public void CreerEmprunteur(Emprunteur emprunteur) {
-//        String nom = emprunteur.getName();
-//        String email = emprunteur.getEmail();
-//        String phone = emprunteur.getPhoneNumber();
-//
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
-//        try (EntityManager em = entityManagerFactory.createEntityManager()) {
-//
-//
-//            em.getTransaction().begin();
-//
-//            List<Utilisateur> Utilisateurs = em.createQuery("SELECT u FROM Utilisateur u WHERE u.name = :name")
-//                    .setParameter("name", nom).getResultList();
-//            if (Utilisateurs.isEmpty()) {
-////                em.persist(new Utilisateur(nom, email, phone));
-//            }
-//
-//            em.persist(new Emprunteur(nom, email, phone));
-//
-//            em.getTransaction().commit();
-//
-//            em.close();
-//            emf.close();
-//        } catch (RuntimeException e) {
-//            System.out.println("erreur BD" + e.getMessage());
-//        }
-//
-//    / /        return emprunteur;
     }
     @Override
     public void CreerUtilisateur(Utilisateur utilisateur) {

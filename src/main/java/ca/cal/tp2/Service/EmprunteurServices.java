@@ -10,7 +10,7 @@ public class EmprunteurServices {
     }
 
 
-    public void AjouterEmprunt(int emprunteurId, int documentId, String dateEmprunt, String status) {
+    public void NouvelEmprunt(int emprunteurId, int documentId, String dateEmprunt, String status) {
         emprunteurRepository.NouvelEmprunt(emprunteurId, documentId, dateEmprunt, status);
     }
 }
