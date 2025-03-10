@@ -15,8 +15,6 @@ public abstract class Document {
     @ManyToOne
     @JoinColumn(name = "emprunteur_id")
     private Emprunteur emprunteur;
-    @OneToMany(mappedBy = "document")
-    private List<EmpruntDetail> references;
 
     public Document( String titre, int nombreExemplaires) {
 
@@ -50,5 +48,13 @@ public abstract class Document {
 
     public void setNombreExemplaires(int nombreExemplaires) {
         this.nombreExemplaires = nombreExemplaires;
+    }
+
+    public Emprunteur getEmprunteur() {
+        return emprunteur;
+    }
+
+    public void setEmprunteur(Emprunteur emprunteur) {
+        this.emprunteur = emprunteur;
     }
 }

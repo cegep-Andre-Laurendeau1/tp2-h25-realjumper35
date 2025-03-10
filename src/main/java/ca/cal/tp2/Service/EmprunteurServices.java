@@ -1,5 +1,6 @@
 package ca.cal.tp2.Service;
 
+import ca.cal.tp2.Execption.DataBaseErrorException;
 import ca.cal.tp2.Repository.EmprunteurRepository;
 
 public class EmprunteurServices {
@@ -11,6 +12,10 @@ public class EmprunteurServices {
 
 
     public void NouvelEmprunt(int emprunteurId, int documentId, String dateEmprunt, String status) {
-        emprunteurRepository.NouvelEmprunt(emprunteurId, documentId, dateEmprunt, status);
+        try {
+            emprunteurRepository.NouvelEmprunt(emprunteurId, documentId, dateEmprunt, status);
+        } catch (DataBaseErrorException e) {
+            System.err.println("Erreur BD" + e.getMessage());
+        }
     }
 }

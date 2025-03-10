@@ -1,5 +1,6 @@
 package ca.cal.tp2.Repository;
 
+import ca.cal.tp2.Execption.DataBaseErrorException;
 import ca.cal.tp2.Model.Document;
 import ca.cal.tp2.Model.Emprunt;
 import ca.cal.tp2.Model.EmpruntDetail;
@@ -10,8 +11,8 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class EmprunteurRepository {
-    public void NouvelEmprunt(int emprunteurId, int documentId, String dateEmprunt, String status) {
+public class EmprunteurRepository  {
+    public void NouvelEmprunt(int emprunteurId, int documentId, String dateEmprunt, String status) throws DataBaseErrorException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
         EntityManager em = emf.createEntityManager();
 
@@ -38,9 +39,10 @@ public class EmprunteurRepository {
             throw new IllegalArgumentException("Document non trouvé avec l'ID: " + documentId);
         }
         Document document = documents.get(0);
+        document.setEmprunteur(emprunteur);
 
         if (document.getNombreExemplaires() == 0) {
-            throw new IllegalArgumentException("Document non disponible");
+            throw new DataBaseErrorException("Il n'y a plus d'exemplaires disponibles pour le document: " + document.getTitre());
         }
 
         Emprunt emprunt = new Emprunt(dateEmprunt, status, emprunteur);

@@ -1,5 +1,6 @@
 package ca.cal.tp2;
 
+import ca.cal.tp2.Execption.DataBaseErrorException;
 import ca.cal.tp2.Repository.PreposeRepositoryJPA;
 import ca.cal.tp2.Repository.EmprunteurRepository;
 import ca.cal.tp2.Service.PreposeServices;
@@ -53,8 +54,10 @@ public class Main {
         preposeServices.CreerEmprunteur("Yohan", "Le Gal", "23212365522");
         preposeServices.CreerEmprunteur("Briac", "poogman", "45656456456");
 
+//        ajoute 2 fois meme cd1 = addition des quantités
         preposeServices.AjouterCD("CD1", 6, "Artiste1", 60, "Genre1");
         preposeServices.AjouterCD("CD1", 7, "Artiste1", 60, "Genre1");
+
 
         preposeServices.AjouterCD("CD2", 7, "Artiste2", 70, "Genre2");
         preposeServices.AjouterDVD("DVD1", 7, "Realisateur1", 120, "Genre1");
@@ -64,8 +67,15 @@ public class Main {
 
         emprunteurServices.NouvelEmprunt(1, 1, "2020-01-01", "ok");
         emprunteurServices.NouvelEmprunt(1, 2, "2020-01-02", "ok");
-        //emprunteurServices.NouvelEmprunt(1, 6, "2020-01-03", "ok");
+
+        
         emprunteurServices.NouvelEmprunt(2, 6, "2020-01-04", "ok");
+//        nb exemplaire = 0
+        try {
+            emprunteurServices.NouvelEmprunt(1, 6, "2020-01-03", "ok");
+        } catch (DataBaseErrorException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("FIN");
     }
