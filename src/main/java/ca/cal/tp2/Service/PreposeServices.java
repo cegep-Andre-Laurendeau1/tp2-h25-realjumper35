@@ -4,18 +4,18 @@ import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
 import ca.cal.tp2.Repository.IPreposeRepository;
 
-public class AdminServices {
+public class PreposeServices {
     private final IPreposeRepository adminRepository;
 
-    public AdminServices(IPreposeRepository adminRepository) {
+    public PreposeServices(IPreposeRepository adminRepository) {
         this.adminRepository = adminRepository;
     }
 
 
-    public void AjouterEmprunteur(String name, String email, String phoneNumber) {
+    public void CreerEmprunteur(String name, String email, String phoneNumber) {
         Emprunteur emprunteur = new Emprunteur(name, email, phoneNumber);
 
-        adminRepository.CreerEmprunteur(emprunteur);
+        adminRepository.CreerEmprunteur(name, email, phoneNumber);
     }
 
     public Utilisateur TrouverEmprunteur(int userID) {
@@ -23,12 +23,12 @@ public class AdminServices {
     }
 
     public void AjouterCD(String titre, int NE, String artiste, int duree, String genre) {
-        adminRepository.ajouterCD(titre, NE, artiste, duree, genre);
+        adminRepository.CreerCD(titre, NE, artiste, duree, genre);
     }
     public void AjouterDVD(String titre, int NE, String realisateur, int duree, String genre) {
-        adminRepository.ajouterDVD(titre, NE, realisateur, duree, genre);
+        adminRepository.CreerDVD(titre, NE, realisateur, duree, genre);
     }
     public void AjouterLivre(String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
-        adminRepository.ajouterLivre(titre, nombreExemplaires, ISBN, auteur, editeur, nombrePages);
+        adminRepository.CreerLivre(titre, nombreExemplaires, ISBN, auteur, editeur, nombrePages);
     }
 }

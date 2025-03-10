@@ -48,6 +48,21 @@ public class PreposeRepositoryJDBC implements IPreposeRepository {
 
 
     @Override
+    public void CreerUtilisateur(Utilisateur utilisateur) {
+
+    }
+
+    @Override
+    public void CreerEmprunteur(String name, String email, String phoneNumber) {
+
+    }
+
+    @Override
+    public void CreerPrepose(String name, String email, String phoneNumber) {
+
+    }
+
+    @Override
     public Utilisateur getEmprunteur(int userID) {
         String sql = "SELECT * FROM Utilisateur WHERE user_id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -74,17 +89,17 @@ public class PreposeRepositoryJDBC implements IPreposeRepository {
     }
 
     @Override
-    public void ajouterCD(String titre, int NE, String artiste, int duree, String genre) {
+    public void CreerCD(String titre, int NE, String artiste, int duree, String genre) {
 
     }
 
     @Override
-    public void ajouterDVD(String titre, int NE, String realisateur, int duree, String genre) {
+    public void CreerDVD(String titre, int NE, String realisateur, int duree, String genre) {
 
     }
 
     @Override
-    public void ajouterLivre(String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
+    public void CreerLivre(String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
 
     }
 
