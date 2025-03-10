@@ -129,4 +129,23 @@ public class EmprunteurRepository {
     }
 
 
+    public List<EmpruntDetail> listeEmpruntDetails(int emprunteurId) throws DataBaseErrorException {
+        try (EntityManager em = entityManagerFactory.createEntityManager()) {
+
+            em.getTransaction().begin();
+            List<EmpruntDetail> emprunts = em.createQuery(
+                            "SELECT ed FROM EmpruntDetail ed " +
+                                    "JOIN ed.emprunt e " +
+                                    "WHERE e.emprunteur.userID = :emprunteurId", EmpruntDetail.class)
+                    .setParameter("emprunteurId", emprunteurId)
+                    .getResultList();
+
+            if (emprunts.isEmpty()) {
+                throw new DataBaseErrorException("Aucun emprunt trouvé pour l'emprunteur avec l'ID: " + emprunteurId);
+            } else {
+                return emprunts;
+            }
+        }
+    }
+
 }

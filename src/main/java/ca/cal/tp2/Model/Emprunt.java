@@ -2,14 +2,13 @@ package ca.cal.tp2.Model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Emprunt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int borrowID;
+    private int EmpruntID;
     @Temporal(TemporalType.DATE)
     private String dateEmprunt;
     private String status;
@@ -19,7 +18,7 @@ public class Emprunt {
     private Emprunteur emprunteur;
 
     @OneToMany(mappedBy = "emprunt")
-    private List<EmpruntDetail> getItems;
+    private List<EmpruntDetail> ListEMpruntDetail;
 
 
 
@@ -33,12 +32,12 @@ public class Emprunt {
         this.emprunteur = emprunteur;
     }
 
-    public int getBorrowID() {
-        return borrowID;
+    public int getEmpruntID() {
+        return EmpruntID;
     }
 
-    public void setBorrowID(int borrowID) {
-        this.borrowID = borrowID;
+    public void setEmpruntID(int borrowID) {
+        this.EmpruntID = borrowID;
     }
 
     public String getDateEmprunt() {
@@ -65,11 +64,5 @@ public class Emprunt {
         this.emprunteur = emprunteur;
     }
 
-    public List<EmpruntDetail> getGetItems() {
-        return getItems;
-    }
 
-    public void setGetItems(List<EmpruntDetail> getItems) {
-        this.getItems = getItems;
-    }
 }

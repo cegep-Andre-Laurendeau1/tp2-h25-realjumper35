@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class EmpruntDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int lineItemID;
+    private int EmpruntDetailID;
     @Temporal(TemporalType.DATE)
     private String dateRetourPrevue;
     @Temporal(TemporalType.DATE)
@@ -33,12 +33,12 @@ public class EmpruntDetail {
         this.status = disponible;
     }
 
-    public int getLineItemID() {
-        return lineItemID;
+    public int getEmpruntDetailID() {
+        return EmpruntDetailID;
     }
 
-    public void setLineItemID(int lineItemID) {
-        this.lineItemID = lineItemID;
+    public void setEmpruntDetailID(int lineItemID) {
+        this.EmpruntDetailID = lineItemID;
     }
 
     public String getDateRetourPrevue() {

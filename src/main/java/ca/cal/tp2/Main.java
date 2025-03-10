@@ -63,7 +63,7 @@ public class Main {
         preposeServices.AjouterCD("breakfast in america", 7, "Supertramp", 120, "ROCK");
 
         preposeServices.AjouterDVD("SpiderMan", 7, "Sam Raimi", 260, "SF");
-        preposeServices.AjouterDVD("DUNE: Partie 1", 8, "Denis Villeneuve", 500, "SF");
+        preposeServices.AjouterDVD("DUNE: Partie 2", 8, "Denis Villeneuve", 500, "SF");
         preposeServices.AjouterLivre("1984", 8, "ISBN1", "George Orwell", "la petite maison", 100);
         preposeServices.AjouterLivre("Game of thrones : Volume 1", 1, "ISBN2", "martins", "la gros maison", 158);
         preposeServices.AjouterLivre("Game of thrones : Volume 1500", 156, "ISBN3", "martins", "la gros maison", 15820);
@@ -71,7 +71,7 @@ public class Main {
 
         emprunteurServices.NouvelEmprunt(1, 1, "2020-01-01", "ok");
         emprunteurServices.NouvelEmprunt(1, 2, "2020-01-02", "ok");
-        // emprunteurServices.NouvelEmprunt(1, 1, "2020-01-03", "ok");
+         emprunteurServices.NouvelEmprunt(1, 1, "2021-01-03", "ok");
 
 
         emprunteurServices.NouvelEmprunt(2, 6, "2020-01-04", "ok");
@@ -91,6 +91,8 @@ public class Main {
 //TrouverDVD
         emprunteurServices.TrouverDVD("SpiderMan", "Sam Raimi");
 
+
+        emprunteurServices.AvoirListEmprunt(1);
 
         System.out.println("FIN");
     }

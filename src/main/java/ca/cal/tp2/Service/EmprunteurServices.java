@@ -1,9 +1,7 @@
 package ca.cal.tp2.Service;
 
 import ca.cal.tp2.Execption.DataBaseErrorException;
-import ca.cal.tp2.Model.CD;
-import ca.cal.tp2.Model.DVD;
-import ca.cal.tp2.Model.Livre;
+import ca.cal.tp2.Model.*;
 import ca.cal.tp2.Repository.EmprunteurRepository;
 
 import java.util.List;
@@ -66,5 +64,21 @@ public class EmprunteurServices {
             System.out.println(dvd.getTitre() + " - " + dvd.getRealisateur() + " - " + dvd.getDuree() + " - " + dvd.getNote());
         }
         System.out.println("");
+    }
+
+
+    public void AvoirListEmprunt(int emprunteurId) {
+        try {
+            List<EmpruntDetail> emprunts = emprunteurRepository.listeEmpruntDetails(emprunteurId);
+            System.out.println("Liste des emprunts :");
+            for (EmpruntDetail empruntDetail : emprunts) {
+                System.out.println("Nom de l'emprunteur: " + empruntDetail.getEmprunt().getEmprunteur().getNom() + " - " + "Titre du document: " + empruntDetail.getDocument().getTitre() + " - " + " Date d'emprunt ; "+ empruntDetail.getEmprunt().getDateEmprunt() +" - "+ " Date de retour prévue: " + empruntDetail.getDateRetourPrevue());
+            }
+        } catch (DataBaseErrorException e) {
+            System.out.println("");
+            System.out.println(" ERREUR D'EMPRUNT !!!!");
+            System.out.println(e.getMessage());
+        }
+
     }
 }
