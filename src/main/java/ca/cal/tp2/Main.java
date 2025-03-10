@@ -1,12 +1,14 @@
 package ca.cal.tp2;
 
 import ca.cal.tp2.Execption.DataBaseErrorException;
+import ca.cal.tp2.Model.Livre;
 import ca.cal.tp2.Repository.PreposeRepositoryJPA;
 import ca.cal.tp2.Repository.EmprunteurRepository;
 import ca.cal.tp2.Service.PreposeServices;
 import ca.cal.tp2.Service.EmprunteurServices;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, SQLException {
@@ -55,27 +57,34 @@ public class Main {
         preposeServices.CreerEmprunteur("Briac", "poogman", "45656456456");
 
 //        ajoute 2 fois meme cd1 = addition des quantités
-        preposeServices.AjouterCD("CD1", 6, "Artiste1", 60, "Genre1");
-        preposeServices.AjouterCD("CD1", 7, "Artiste1", 60, "Genre1");
+        preposeServices.AjouterCD("Racine Carré", 6, "Stromae", 130, "POP");
+        preposeServices.AjouterCD("Racine Carré", 8, "Stromae", 130, "POP");
 
+        preposeServices.AjouterCD("breakfast in america", 7, "Supertramp", 120, "ROCK");
 
-        preposeServices.AjouterCD("CD2", 7, "Artiste2", 70, "Genre2");
-        preposeServices.AjouterDVD("DVD1", 7, "Realisateur1", 120, "Genre1");
-        preposeServices.AjouterDVD("DVD2", 8, "Realisateur2", 130, "Genre2");
-        preposeServices.AjouterLivre("Livre1", 8, "ISBN1", "Auteur1", "Editeur1", 100);
-        preposeServices.AjouterLivre("Livre2", 1, "ISBN2", "Auteur2", "Editeur2", 110);
+        preposeServices.AjouterDVD("SpiderMan", 7, "Sam Raimi", 260, "SF");
+        preposeServices.AjouterDVD("DUNE: Partie 1", 8, "Denis Villeneuve", 500, "SF");
+        preposeServices.AjouterLivre("1984", 8, "ISBN1", "George Orwell", "la petite maison", 100);
+        preposeServices.AjouterLivre("Game of thrones : Volume 1", 1, "ISBN2", "martins", "la gros maison", 158);
+        preposeServices.AjouterLivre("Game of thrones : Volume 1500", 156, "ISBN3", "martins", "la gros maison", 15820);
+
 
         emprunteurServices.NouvelEmprunt(1, 1, "2020-01-01", "ok");
         emprunteurServices.NouvelEmprunt(1, 2, "2020-01-02", "ok");
+        // emprunteurServices.NouvelEmprunt(1, 1, "2020-01-03", "ok");
 
-        
+
         emprunteurServices.NouvelEmprunt(2, 6, "2020-01-04", "ok");
 //        nb exemplaire = 0
-        try {
-            emprunteurServices.NouvelEmprunt(1, 6, "2020-01-03", "ok");
-        } catch (DataBaseErrorException e) {
-            System.out.println(e.getMessage());
-        }
+//
+        emprunteurServices.NouvelEmprunt(1, 6, "2020-01-03", "ok");
+//
+
+        emprunteurServices.TrouverLivre("1984", "George Orwell");
+        emprunteurServices.TrouverLivre("dmaldmalk", "asdmklamdlkas");
+
+        emprunteurServices.TrouverLivre("game", "martins");
+
 
         System.out.println("FIN");
     }

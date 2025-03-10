@@ -12,8 +12,13 @@ public class Emprunteur extends Utilisateur {
     }
 
 
-
     public Emprunteur() {
 
     }
+
+    public String getNom() {
+        return super.getName();
+    }
+
+
 }

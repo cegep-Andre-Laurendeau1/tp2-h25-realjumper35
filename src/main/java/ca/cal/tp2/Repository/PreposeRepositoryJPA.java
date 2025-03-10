@@ -51,7 +51,7 @@ public class PreposeRepositoryJPA implements IPreposeRepository {
 
     public void CreerDocument(Document document) {
         try (EntityManager em = entityManagerFactory.createEntityManager()) {
-
+            em.getTransaction().begin();
             List<Document> Documents = em.createQuery("SELECT d FROM Document d" +
                             " WHERE d.titre = :titre", Document.class)
                     .setParameter("titre", document.getTitre()).getResultList();
@@ -59,12 +59,9 @@ public class PreposeRepositoryJPA implements IPreposeRepository {
             if (!Documents.isEmpty()) {
                 Document DocumentExistant = Documents.get(0);
                 DocumentExistant.setNombreExemplaires(DocumentExistant.getNombreExemplaires() + document.getNombreExemplaires());
-                em.getTransaction().begin();
                 em.merge(DocumentExistant);
                 em.getTransaction().commit();
             } else {
-
-                em.getTransaction().begin();
                 em.persist(document);
                 em.getTransaction().commit();
             }
