@@ -26,6 +26,13 @@ public class EmpruntDetail {
 
     }
 
+    public EmpruntDetail(Emprunt emprunt, Document document, String date, String disponible) {
+        this.emprunt = emprunt;
+        this.document = document;
+        this.dateRetourPrevue = date;
+        this.status = disponible;
+    }
+
     public int getLineItemID() {
         return lineItemID;
     }

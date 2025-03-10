@@ -5,7 +5,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import java.util.List;
+
 public class AdminRepositoryJPA implements IAdminRepository {
+    private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hibernate2.TP2");
+
     @Override
     public void CreerEmprunteur(Emprunteur emprunteur) {
         String nom = emprunteur.getName();
@@ -13,9 +17,10 @@ public class AdminRepositoryJPA implements IAdminRepository {
         String phone = emprunteur.getPhoneNumber();
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
-        EntityManager em = emf.createEntityManager();
+        try (EntityManager em = entityManagerFactory.createEntityManager()) {
 
-        em.getTransaction().begin();
+
+            em.getTransaction().begin();
 
 //        final Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.name = :name");
 //        query.setParameter("name", nom);
@@ -24,13 +29,15 @@ public class AdminRepositoryJPA implements IAdminRepository {
 //            em.persist(new Utilisateur(nom, email, phone));
 //        }
 
-        em.persist(new Emprunteur(nom, email, phone));
+            em.persist(new Emprunteur(nom, email, phone));
 
-        em.getTransaction().commit();
+            em.getTransaction().commit();
 
-        em.close();
-        emf.close();
-
+            em.close();
+            emf.close();
+        } catch (RuntimeException e) {
+            System.out.println("erreur BD" + e.getMessage());
+        }
 //        return emprunteur;
     }
 
@@ -55,8 +62,18 @@ public class AdminRepositoryJPA implements IAdminRepository {
         EntityManager em = emf.createEntityManager();
 
 
-        em.getTransaction().begin();
-        em.persist(new CD(titre, NE, artiste, duree, genre));
+        List<Document> Documents = em.createQuery("SELECT d FROM Document d" +
+                        " WHERE d.titre = :titre", Document.class)
+                .setParameter("titre", titre).getResultList();
+        if (!Documents.isEmpty()) {
+            Document DocumentExistant = Documents.get(0);
+            DocumentExistant.setNombreExemplaires(DocumentExistant.getNombreExemplaires() + NE);
+            em.merge(DocumentExistant);
+        } else {
+            em.getTransaction().begin();
+            em.persist(new CD(titre, NE, artiste, duree, genre));
+        }
+
         em.getTransaction().commit();
 
         em.close();

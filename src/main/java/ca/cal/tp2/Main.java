@@ -53,19 +53,20 @@ public class Main {
         System.out.println("JPA/Hibernate");
         System.out.println("Ajouter un empruteur :");
         adminServices.AjouterEmprunteur("Yohan", "Le Gal", "23212365522");
-        adminServices.AjouterEmprunteur("Briac", "puagman", "45656456456");
+        adminServices.AjouterEmprunteur("Briac", "paugman", "45656456456");
 
         adminServices.AjouterCD("CD1", 6, "Artiste1", 60, "Genre1");
         adminServices.AjouterCD("CD2", 7, "Artiste2", 70, "Genre2");
         adminServices.AjouterDVD("DVD1", 7, "Realisateur1", 120, "Genre1");
         adminServices.AjouterDVD("DVD2", 8, "Realisateur2", 130, "Genre2");
         adminServices.AjouterLivre("Livre1", 8, "ISBN1", "Auteur1", "Editeur1", 100);
-        adminServices.AjouterLivre("Livre2", 9, "ISBN2", "Auteur2", "Editeur2", 110);
+        adminServices.AjouterLivre("Livre2", 1, "ISBN2", "Auteur2", "Editeur2", 110);
 
         emprunteurServices.AjouterEmprunt(1, 1, "2020-01-01", "ok");
         emprunteurServices.AjouterEmprunt(1, 2, "2020-01-02", "ok");
-        emprunteurServices.AjouterEmprunt(2, 6, "2020-01-03", "ok");
+        //emprunteurServices.AjouterEmprunt(1, 6, "2020-01-03", "ok");
+        emprunteurServices.AjouterEmprunt(2, 6, "2020-01-04", "ok");
 
-
+        System.out.println("FIN");
     }
 }

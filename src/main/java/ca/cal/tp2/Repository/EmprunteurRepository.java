@@ -8,11 +8,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.util.Date;
 import java.util.List;
 
 public class EmprunteurRepository {
-    public void ajouterEmprunt(int emprunteurId, int documentId, String dateEmprunt, String status) {
+    public void NouvelEmprunt(int emprunteurId, int documentId, String dateEmprunt, String status) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
         EntityManager em = emf.createEntityManager();
 
@@ -31,7 +30,6 @@ public class EmprunteurRepository {
 
         List<Document> documents = em.createQuery(
                         "SELECT d FROM Document d " +
-                                "LEFT JOIN FETCH d.references " +
                                 "WHERE d.documentID = :documentId", Document.class)
                 .setParameter("documentId", documentId)
                 .getResultList();
@@ -41,18 +39,22 @@ public class EmprunteurRepository {
         }
         Document document = documents.get(0);
 
+        if (document.getNombreExemplaires() == 0) {
+            throw new IllegalArgumentException("Document non disponible");
+        }
+
         Emprunt emprunt = new Emprunt(dateEmprunt, status, emprunteur);
         em.persist(emprunt);
 
 
-        EmpruntDetail empruntDetail = new EmpruntDetail();
-        empruntDetail.setEmprunt(emprunt);
-        empruntDetail.setDocument(document);
+        EmpruntDetail empruntDetail = new EmpruntDetail(emprunt, document, "2026-11-30", "disponible");
         //a voir pour la date de retour
-        empruntDetail.setDateRetourPrevue("2026-11-30");
-        empruntDetail.setStatus("disponible");
 
         em.persist(empruntDetail);
+
+        document.setNombreExemplaires(document.getNombreExemplaires() - 1);
+
+        em.merge(document);
 
         em.getTransaction().commit();
 
