@@ -7,15 +7,4 @@ public class Prepose extends Utilisateur {
         super(userID, name, email, phoneNumber);
     }
 
-    public void entreNouveauDocument(Document doc) {
-    }
-
-    public void collecteAmende(Emprunteur emprunteur, double montant) {
-    }
-
-    public void rapportAmendes() {
-    }
-
-    public void rapportEmprunts() {
-    }
 }

@@ -1,18 +1,16 @@
 package ca.cal.tp2;
 
-import ca.cal.tp2.Model.Emprunt;
-import ca.cal.tp2.Repository.AdminRepositoryJPA;
+import ca.cal.tp2.Repository.PreposeRepositoryJPA;
 import ca.cal.tp2.Repository.EmprunteurRepository;
 import ca.cal.tp2.Service.AdminServices;
 import ca.cal.tp2.Service.EmprunteurServices;
 
 import java.sql.SQLException;
-import java.util.Date;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, SQLException {
 
-        final AdminServices adminServices = new AdminServices(new AdminRepositoryJPA());
+        final AdminServices adminServices = new AdminServices(new PreposeRepositoryJPA());
         final EmprunteurServices emprunteurServices = new EmprunteurServices(new EmprunteurRepository());
 
 
@@ -53,7 +51,7 @@ public class Main {
         System.out.println("JPA/Hibernate");
         System.out.println("Ajouter un empruteur :");
         adminServices.AjouterEmprunteur("Yohan", "Le Gal", "23212365522");
-        adminServices.AjouterEmprunteur("Briac", "paugman", "45656456456");
+        adminServices.AjouterEmprunteur("Briac", "poogman", "45656456456");
 
         adminServices.AjouterCD("CD1", 6, "Artiste1", 60, "Genre1");
         adminServices.AjouterCD("CD2", 7, "Artiste2", 70, "Genre2");

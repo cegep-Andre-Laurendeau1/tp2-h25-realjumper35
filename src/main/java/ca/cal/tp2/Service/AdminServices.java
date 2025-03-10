@@ -1,14 +1,13 @@
 package ca.cal.tp2.Service;
 
-import ca.cal.tp2.Model.CD;
 import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
-import ca.cal.tp2.Repository.IAdminRepository;
+import ca.cal.tp2.Repository.IPreposeRepository;
 
 public class AdminServices {
-    private final IAdminRepository adminRepository;
+    private final IPreposeRepository adminRepository;
 
-    public AdminServices(IAdminRepository adminRepository) {
+    public AdminServices(IPreposeRepository adminRepository) {
         this.adminRepository = adminRepository;
     }
 

@@ -7,7 +7,7 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class AdminRepositoryJPA implements IAdminRepository {
+public class PreposeRepositoryJPA implements IPreposeRepository {
     private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hibernate2.TP2");
 
     @Override
@@ -55,51 +55,44 @@ public class AdminRepositoryJPA implements IAdminRepository {
         return utilisateur;
     }
 
+    public void ajouterDocument(Document document) {
+        try (EntityManager em = entityManagerFactory.createEntityManager()) {
+
+            List<Document> Documents = em.createQuery("SELECT d FROM Document d" +
+                            " WHERE d.titre = :titre", Document.class)
+                    .setParameter("titre", document.getTitre()).getResultList();
+
+            if (!Documents.isEmpty()) {
+                Document DocumentExistant = Documents.get(0);
+                DocumentExistant.setNombreExemplaires(DocumentExistant.getNombreExemplaires() + document.getNombreExemplaires());
+                em.getTransaction().begin();
+                em.merge(DocumentExistant);
+                em.getTransaction().commit();
+            } else {
+
+                em.getTransaction().begin();
+                em.persist(document);
+                em.getTransaction().commit();
+            }
+        }
+    }
 
     @Override
     public void ajouterCD(String titre, int NE, String artiste, int duree, String genre) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
-        EntityManager em = emf.createEntityManager();
-
-
-        List<Document> Documents = em.createQuery("SELECT d FROM Document d" +
-                        " WHERE d.titre = :titre", Document.class)
-                .setParameter("titre", titre).getResultList();
-        if (!Documents.isEmpty()) {
-            Document DocumentExistant = Documents.get(0);
-            DocumentExistant.setNombreExemplaires(DocumentExistant.getNombreExemplaires() + NE);
-            em.merge(DocumentExistant);
-        } else {
-            em.getTransaction().begin();
-            em.persist(new CD(titre, NE, artiste, duree, genre));
-        }
-
-        em.getTransaction().commit();
-
-        em.close();
-        emf.close();
+        CD cd = new CD(titre, NE, artiste, duree, genre);
+        ajouterDocument(cd);
     }
 
     @Override
     public void ajouterDVD(String titre, int NE, String realisateur, int duree, String genre) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.persist(new DVD(titre, NE, realisateur, duree, genre));
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        DVD dvd = new DVD(titre, NE, realisateur, duree, genre);
+        ajouterDocument(dvd);
     }
 
     @Override
     public void ajouterLivre(String titre, int nombreExemplaires, String ISBN, String auteur, String editeur, int nombrePages) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernate2.TP2");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        em.persist(new Livre(titre, nombreExemplaires, ISBN, auteur, editeur, nombrePages));
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
+        Livre livre = new Livre(titre, nombreExemplaires, ISBN, auteur, editeur, nombrePages);
+        ajouterDocument(livre);
     }
 
 

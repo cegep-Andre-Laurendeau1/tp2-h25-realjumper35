@@ -3,7 +3,7 @@ package ca.cal.tp2.Repository;
 import ca.cal.tp2.Model.Emprunteur;
 import ca.cal.tp2.Model.Utilisateur;
 
-public interface IAdminRepository {
+public interface IPreposeRepository {
     void CreerEmprunteur(Emprunteur emprunteur);
 
     public abstract Utilisateur getEmprunteur(int userID);

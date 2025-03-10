@@ -5,7 +5,7 @@ import ca.cal.tp2.Model.Utilisateur;
 
 import java.sql.*;
 
-public class AdminRepositoryJDBC implements IAdminRepository {
+public class PreposeRepositoryJDBC implements IPreposeRepository {
     static final String DB_URL = "jdbc:h2:mem:TP1;DB_CLOSE_DELAY=-1";
     static final String USER = "sa";
     static final String PASS = "";
